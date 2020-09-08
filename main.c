@@ -139,8 +139,8 @@ int main(int argc, char **argv)
           printHelp(prog_name);
           break;
         case 'f':
-        argv++;
-        ptr = fopen(*argv, "w");
+      
+        ptr = fopen(*argv+2, "w");
         if (ptr == NULL) {
             fprintf(stderr, "Can't open input file in.list!\n");
             exit(1);
