@@ -1,0 +1,42 @@
+Part Two: Fixing the Bugs
+-------------------------
+
+Understanding the code
+
+  1) Explain why this program uses the exclamation operator with the
+     strcmp() function.
+
+	So when the strcmp() compares the same string, it will return zero and when strcmp() compares different strings it will return a number
+In the if statement, since it is a boolean, zero is equal to false, and any other number is equal to true. The "!" is makes the statements reverse so when the strings are the same 
+it will ring true and when they are different it will ring false"
+
+  2) Explain why the 'LENGTH' macro returns the length of an array.
+     Would it work with a pointer to a dynamically allocated array? (Hint:
+     understand sizeof).
+
+The reason why is because the LENGTH is equal to sizeof(an array)/sizeof(* of an array) where the *ofanarray is equal to the
+bits of the first element in the array.
+
+Bug hunting
+
+  3) Explain and fix the logical flow bug within the switch statement.
+     (What happens when the -h option is used?)
+
+	When we typed -h option we would run the first case and as well as the default because we didnt have any break
+in the first case.
+
+  4) Explain and fix the argument parsing error. (Why is entrycount never
+     zero?)
+
+The reason why entrycount is never zero is because since for argv, argv[0] is always the programs name which makes it run stright into 
+the else statement while argv isnt NULL. That else statement increases the entrycount by one which makes always one and never zero. The way to 
+fix this is by incrimenting argv before doing anything else to get out of the programs name.
+
+
+  5) Fix print_result() to print results correctly and in the same order
+     as the words were specified on the command line.  Explain your solution.
+
+The way I fixed this was by creating an int i and setting it equal to 0. Then creating a loop while i is less than the entry_count.
+When the loop goes through it i would call each word and counter from what we have created in the main.c and print it out. 
+
+
