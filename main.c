@@ -25,6 +25,7 @@ Expected output:
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+//#include <cstring>
 #include "smp0_tests.h"
 
 #define LENGTH(s) (sizeof(s) / sizeof(*s))
@@ -131,20 +132,32 @@ int main(int argc, char **argv)
     return EXIT_SUCCESS;
   }
   argv++;
+  
   while (*argv != NULL) {
     if (**argv == '-') {
-
+       // fprintf(stdout, "%ld\n",strlen(*argv) );
       switch ((*argv)[1]) {
         case 'h':
           printHelp(prog_name);
           break;
         case 'f':
-      
+        if(strlen(*argv) > 2){
         ptr = fopen(*argv+2, "w");
         if (ptr == NULL) {
+            //fprintf(stdout, "Error 1");
             fprintf(stderr, "Can't open input file in.list!\n");
             exit(1);
             }
+        }
+        else{
+            argv++;
+            ptr = fopen(*argv, "w");
+        if (ptr == NULL) {
+            //fprintf(stdout, "Error 2");
+            fprintf(stderr, "Can't open input file in.list!\n");
+            exit(1);
+        }
+        }
           break;
         default:
           fprintf(stderr, "%s: Invalid option %s. Use -h for help.\n",
